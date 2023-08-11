@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url(todo.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+        }
+
+        .div {
+            background-image: linear-gradient(lightcoral, rgb(96, 15, 96));
+            padding: 20px;
+            border-radius: 20px;
+            width: 90%;
+            height: 400px;
+            max-width: 400px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: auto;
+        }
+
+        #val {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid transparent;
+            margin-bottom: 10px;
+            margin-top: 12px;
+            margin-right: 2px;
+        }
+
+        .div button {
+            width: 18%;
+            padding: 10px;
+            margin: 0 0.5%;
+            border-radius: 5px;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .div #btn1 {
+            background-color: plum;
+        }
+
+        .div #btn2 {
+            background-color: lightpink;
+        }
+
+        #myid {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #myid li {
+            background-color: white;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            border: 1px solid plum;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* .delete {
+            padding: 5px;
+            background-color: peru;
+            border-radius: 5px;
+            border: 1px solid peru;
+            color: white;
+            cursor: pointer;
+        } */
+    </style>
+</head>
+<body>
+    <div class="div">
+        <h1 style="color: aliceblue;">Todo List</h1>
+        <div style="display: flex; align-items: center;">
+            <input type="text" id="val" placeholder="Add your new todo" title="Add">
+            <button type="button" onclick="list()" id="btn1"><i class="fas fa-plus"></i></button>
+            <button id="btn2" onclick="clearall()" title="deleteall"> <i class="far fa-trash-alt"></i></button>
+        </div>
+        <ul id="myid"></ul>
+    </div>
+
+    <script>
+      function list(){
+              let listvalue=document.getElementById("val").value;
+              if(listvalue==""){
+                     alert("Enter something:");
+              }
+              else{
+                     const mypara=document.createElement("li");
+                     mypara.style.cssText=
+                     "background-color:white;list-Style-Type:none;padding:10px;margin-bottom:5px;border-radius: 5px;border: 1px solid plum; display:flex;justify-content: space-between;"
+                    
+                     mypara.innerHTML+=`	 &#10024; ${listvalue}<button class="delete" style=" padding: 5px;
+                     background-color: #ff00e0;border-radius: 5px;border: 1px solid #ff00e0;color: aliceblue;">
+                     <i class="far fa-trash-alt"></i>
+                     </button>`
+                     const mydiv=document.getElementById("myid");
+                            mydiv.appendChild(mypara);
+                            
+                     
+                     let removevalue = document.querySelectorAll(".delete");
+                     for(var i=0; i<removevalue.length; i++){
+                                   removevalue[i].onclick = function(){
+                                   this.parentNode.remove();
+                             }
+                     }
+               }
+
+             
+       }
+       function clearall() {
+         const mydiv = document.getElementById("myid");
+         mydiv.innerHTML = ""; 
+      }
+    </script>
+</body>
+</html>
